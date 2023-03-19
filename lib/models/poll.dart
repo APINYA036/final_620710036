@@ -13,6 +13,7 @@ class Poll {
     return Poll(
       id: json['id'],
       question: json['question'],
+      //choices: json['choices'],
       choices: (json['choices'] as List).map((item) => item as String).toList(),
     );
   }

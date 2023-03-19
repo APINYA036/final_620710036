@@ -19,11 +19,36 @@ extension ParseToString on HttpMethod {
 
 class ApiClient {
   // todo: กำหนด base URL ให้เหมาะสม !!!
-  static const apiBaseUrl = 'xxxxxxxxxxxxxxxxxxx';
+  static const apiBaseUrl = '{{SERVER}}/api';
 
   // todo: สร้างเมธอดสำหรับ request ไปยัง API โดยเรียกใช้เมธอด _makeRequest() ที่อาจารย์เตรียมไว้ให้ด้านล่างนี้
   // ดูตัวอย่างได้จากเมธอด getAllStudents(), getStudentById(), etc. ในโปรเจ็ค class_attendance
   // https://github.com/3bugs/cpsu_class_attendance_frontend/blob/master/lib/services/api.dart
+  Future<List<ResponseBody>> getAllStudents() async {
+    var responseBody = await _makeRequest(
+      HttpMethod.get,
+      '/students',
+    );
+    List list = responseBody.data;
+    return list.map((item) => ResponseBody.fromJson(item)).toList();
+  }
+  Future<ResponseBody?> getStudentById(String id) async {
+    var responseBody = await _makeRequest(
+      HttpMethod.get,
+      '/polls/$id',
+    );
+    Map<String, dynamic>? map = responseBody.data;
+    return map != null ? ResponseBody.fromJson(map) : null;
+  }
+  Future<ResponseBody?> studentLogin(String studentId, String password) async {
+    var responseBody = await _makeRequest(
+      HttpMethod.get, //get คือการดึงข้อมูลจาก server
+      '/polls/id',
+
+    );
+    Map<String, dynamic>? map = responseBody.data;
+    return map != null ? ResponseBody.fromJson(map as Map<String, dynamic>) : null;
+  }
 
   Future<ResponseBody> _makeRequest(
     HttpMethod httpMethod,

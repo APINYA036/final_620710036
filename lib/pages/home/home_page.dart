@@ -13,6 +13,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<Poll>? _polls;
   var _isLoading = false;
+  /*var _activeTabIndex = 0;
+  VoteMenu? _currentPage = VoteMenu();*/
 
   @override
   void initState() {
@@ -29,13 +31,56 @@ class _HomePageState extends State<HomePage> {
     return MyScaffold(
       body: Column(
         children: [
-          Image.network('https://cpsu-test-api.herokuapp.com/images/election.jpg'),
-          Expanded(
+          Image.network(
+              'https://cpsu-test-api.herokuapp.com/images/election.jpg'),
+
+          /*Expanded(
             child: Stack(
               children: [
                 if (_polls != null) _buildList(),
                 if (_isLoading) _buildProgress(),
               ],
+            ),
+      ),*/
+
+
+          Text(
+              '1 บุคคลใดที่คุณจะสนับสนุนให้เป็นนายกรัฐมนตรีในการเลือกตั้งครั้งนี้',
+              style: TextStyle(fontSize: 18, color: Colors.black)),
+          Text(
+            ' ',
+            style: TextStyle(fontSize: 50),
+          ),
+          Text(
+              '2 ในการเลือกตั้ง ส.ส. แบบแบ่งเขต คุณจะเลือกผู้สมัครจากพรรคการเมืองใด',
+              style: TextStyle(fontSize: 18, color: Colors.black)),
+          Text(
+            ' ',
+            style: TextStyle(fontSize: 50),
+          ),
+          Text(
+              '3 ในการเลือกตั้ง ส.ส. แบบบัญชีรายชื่อ คุณจะเลือกผู้สมัครจากพรรคการเมืองใด',
+              style: TextStyle(fontSize: 18, color: Colors.black)),
+          /*Center(
+            child: Column(
+              //mainAxisSize: MainAxisSize.min,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                  },
+                  child: const Text('ดูผลโหวต'),
+                )
+              ],
+            ),
+          ),*/
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16.0, 48.0, 16.0, 48.0),
+            child: ElevatedButton(
+              onPressed: (){},
+              child: const Padding(
+                padding: EdgeInsets.all(12.0),
+                child: Text('ดูผลโหวต',),
+              ),
             ),
           ),
         ],
